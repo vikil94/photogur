@@ -9,7 +9,7 @@
     {% for picture in pictures %}
         <ul>
           <li>
-            <p>{{ picture.title }} | {{ picture.artist }} | Comments: "{{ comments }}"</p>
+            <p>{{ picture.title }} | {{ picture.artist }} | Comments: {{ picture.comments.count }}</p>
             <img src ="{{ picture.url }}" />
           </li>
         </ul>
