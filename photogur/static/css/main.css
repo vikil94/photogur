@@ -30,6 +30,17 @@ footer {
 }
 .pictures {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr ;
+}
 
+@media (max-width: 439px) and (min-width: 20px) {
+  .pictures {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 440px) {
+  .pictures {
+    grid-template-columns: 1fr 1fr;
+  }
 }
