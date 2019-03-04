@@ -8,15 +8,17 @@
     {% extends 'base.html' %}
     {% block content %}
         <ul>
+          <div class="pictures">
             {% for picture in pictures %}
         <a href="{% url 'picture_details' id=picture.pk %}">
           <li>
-            <p>{{ picture.title }} | {{ picture.artist }} | Comments: {{ picture.comments.count }}</p>
             <img src ="{{ picture.url }}" />
+            <p>{{ picture.title }} by {{ picture.artist }} | Comments: {{ picture.comments.count }}</p>
           </li>
         </a>
             {% endfor %}
         </ul>
+      </div>
     {% endblock %}
   </body>
 </html>

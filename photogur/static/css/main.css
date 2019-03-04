@@ -1,3 +1,35 @@
-body {
-  background: tomato;
+header {
+  color: grey;
+}
+
+img {
+  width: 100%;
+  margin: 0 auto;
+}
+
+p {
+  font-family: cursive;
+  color: black;
+}
+
+li {
+  margin: 5px
+}
+
+a {
+  border-style: solid;
+  border-color: grey;
+  margin: 10px;
+  text-decoration: none;
+}
+
+footer {
+  background: grey;
+  display: flex;
+  justify-content: center;
+}
+.pictures {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
 }
