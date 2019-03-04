@@ -6,13 +6,15 @@
   </head>
   <body>
     <h1>Pictures</h1>
-    {% for picture in pictures %}
         <ul>
+            {% for picture in pictures %}
+        <a href="{% url 'picture_details' id=picture.pk %}">
           <li>
             <p>{{ picture.title }} | {{ picture.artist }} | Comments: {{ picture.comments.count }}</p>
             <img src ="{{ picture.url }}" />
           </li>
+        </a>
+            {% endfor %}
         </ul>
-      {% endfor %}
   </body>
 </html>
