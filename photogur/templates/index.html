@@ -7,7 +7,6 @@
   <body>
     {% extends 'base.html' %}
     {% block content %}
-    <h1>Pictures</h1>
         <ul>
             {% for picture in pictures %}
         <a href="{% url 'picture_details' id=picture.pk %}">
@@ -18,6 +17,6 @@
         </a>
             {% endfor %}
         </ul>
-    {% endblock %}  
+    {% endblock %}
   </body>
 </html>
