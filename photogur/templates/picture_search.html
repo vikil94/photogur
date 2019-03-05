@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  {% extends 'base.html' %}
+  {% block content %}
+    {% for picture in pictures %}
+     <h2>Seach Results: {{pictures.count}}</h2>
+      <img src="{{ picture.url }}" alt="{{ picture.title }}">
+      <p>{{ picture.title }} by {{ picture.artist }}</p>
+    {% endfor %}
+  {% endblock %}
+  </body>
+</html>
