@@ -15,8 +15,18 @@ def picture_show(request, id):
     return HttpResponse(response)
 
 def picture_search(request):
-  query = request.GET['query']
-  search_results = Picture.objects.filter(artist=query)
-  context = {'pictures': search_results}
-  response = render(request, 'picture_search.html', context)
-  return HttpResponse(response)
+    query = request.GET['query']
+    search_results = Picture.objects.filter(artist=query)
+    context = {'pictures': search_results}
+    response = render(request, 'picture_search.html', context)
+    return HttpResponse(response)
+
+def create_comment(request):
+    picture = request.POST['picture']
+    comment_name = request.POST['comment_name']
+    comment_message = request.POST['comment_message']
+    comment_picture = Picture.objects.get(pk=request.POST['picture'])
+    comment = Comment.objects.create(name=comment_name,
+                                     message=comment_message,
+                                     picture=comment_picture)
+    return HttpResponseRedirect('/pictures/' + picture)

@@ -8,9 +8,9 @@
   {% extends 'base.html' %}
   {% block content %}
     {% for picture in pictures %}
-     <h2>Seach Results: {{pictures.count}}</h2>
-      <img src="{{ picture.url }}" alt="{{ picture.title }}">
-      <p>{{ picture.title }} by {{ picture.artist }}</p>
+     <h2>Search Results: {{pictures.count}}</h2>
+        <img src="{{ picture.url }}" alt="{{ picture.title }}">
+        <p>{{ picture.title }} by {{ picture.artist }}</p>
     {% endfor %}
   {% endblock %}
   </body>
