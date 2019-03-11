@@ -10,6 +10,15 @@
   <body>
     <header>
       <h1>Photogur</h1>
+      <nav>
+        {% if request.user.is_authenticated %}
+        <!-- display link to log out -->
+        <a href="{% url 'logout' %}">Log out</a>
+        {% else %}
+        <!-- display link to login page -->
+        <a href="{% url 'login' %}">Log in</a>
+        {% endif %}
+      </nav>
       <form action="{% url 'picture_search' %}" method="get">
         <label for="picture-search">
           <span>Search:</span>
@@ -18,6 +27,7 @@
 
         <input type="submit" value="search">
       </form>
+
     </header>
     {% block content %}
     {% endblock %}

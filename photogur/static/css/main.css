@@ -32,6 +32,10 @@ footer {
   display: flex;
   justify-content: center;
 }
+
+nav {
+  margin-bottom: 30px;
+}
 .pictures {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr ;
