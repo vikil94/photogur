@@ -9,6 +9,7 @@
 {% block content %}
     <h2>{{picture.title}}</h2>
 <h2>By {{picture.artist}}</h2>
+<p>Added by: {{ picture.user }}</p>
 
 <img src="{{picture.url}}" alt="{{picture.title}}" />
 <h3>Comments:</h3>

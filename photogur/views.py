@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from photogur.models import Picture, Comment
-from photogur.forms import LoginForm
+from photogur.forms import LoginForm, PictureForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
@@ -77,3 +77,16 @@ def signup(request):
         form = UserCreationForm()
     html_response = render(request, 'signup.html', {'form': form})
     return HttpResponse(html_response)
+
+
+def add_picture(request):
+    if request.method == 'POST':
+        form = PictureForm(request.POST)
+        if form.is_valid():
+            form.user = request.user
+            new_picture = form.save()
+            return HttpResponseRedirect('/pictures/' + str(new_picture.id))
+    else:
+        form = PictureForm()
+    response = render(request, 'new_picture.html', {'form': form})
+    return HttpResponse(response)

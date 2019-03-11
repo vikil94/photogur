@@ -16,6 +16,10 @@ p {
   top: 230px; */
 }
 
+ul {
+  list-style-type: none;
+}
+
 li {
   margin: 5px
 }
