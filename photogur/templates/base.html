@@ -14,12 +14,14 @@
         {% if request.user.is_authenticated %}
         <!-- display link to log out -->
         <a href="{% url 'logout' %}">Log out</a>
+        <li>Logged in as {{ request.user.username }}</li>
         {% else %}
         <!-- display link to login page -->
         <a href="{% url 'login' %}">Log in</a>
         {% endif %}
+        <a href="{% url 'signup' %}">Signup</a>
       </nav>
-    </header>  
+    </header>
       <form action="{% url 'picture_search' %}" method="get">
         <label for="picture-search">
           <span>Search:</span>

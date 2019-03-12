@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+<h2>Edit a picture</h2>
+
+{{ form.errors }}
+<form action="{% url 'edit_picture' picture.id %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" name="" value="Update picture">
+</form>
+
+  </body>
+</html>

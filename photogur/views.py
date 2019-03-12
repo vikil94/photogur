@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from photogur.models import Picture, Comment
 from photogur.forms import LoginForm, PictureForm
 from django.contrib.auth import authenticate, login, logout
@@ -92,3 +92,21 @@ def add_picture(request):
         form = PictureForm()
     response = render(request, 'new_picture.html', {'form': form})
     return HttpResponse(response)
+
+@login_required
+def edit_picture(request, id):
+    picture = get_object_or_404(Picture, id=id, user=request.user.pk)
+    if request.method == 'GET':
+        form = PictureForm(instance=picture)
+        context = {'form': form, 'picture': picture}
+        return render(request, 'edit.html', context)
+
+    elif request.method == 'POST':
+        form = PictureForm(request.POST, instance=picture)
+        if form.is_valid():
+            updated_picture = form.save()
+            return HttpResponseRedirect(reverse('show', args=[picture.id]))
+        else:
+            context = {'form': form, 'picture': picture}
+            response = render(request, 'edit.html', context)
+            return HttpResponse(response)
