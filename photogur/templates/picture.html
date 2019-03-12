@@ -20,6 +20,8 @@
   {% endfor %}
 </ul>
 
+<p><a href="{% url 'edit_picture' picture.id %}">Edit</a></p>
+
 <form action="{% url 'create_comment' %}" method="post">
   {% csrf_token %}
   <input type="hidden" name="picture" value="{{ picture.pk }}">

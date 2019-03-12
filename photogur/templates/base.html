@@ -20,6 +20,9 @@
         <a href="{% url 'login' %}">Log in</a>
         {% endif %}
         <a href="{% url 'signup' %}">Signup</a>
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}  
       </nav>
     </header>
       <form action="{% url 'picture_search' %}" method="get">

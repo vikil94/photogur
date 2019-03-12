@@ -5,7 +5,12 @@ from photogur.forms import LoginForm, PictureForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
+
+
+def root(request):
+    return HttpResponseRedirect('/pictures')
 
 
 def picture_page(request):
@@ -41,6 +46,8 @@ def create_comment(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+         return HttpResponseRedirect('/pictures')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -66,6 +73,8 @@ def logout_view(request):
 
 
 def signup(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/pictures')
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -95,8 +104,14 @@ def add_picture(request):
 
 @login_required
 def edit_picture(request, id):
-    picture = get_object_or_404(Picture, id=id, user=request.user.pk)
+    picture = get_object_or_404(Picture, id=id)
     if request.method == 'GET':
+        if picture.user != request.user: # redirects the user to the home page if
+                                        # they are not the player who created the game
+                                        # therefore they are not able to edit that game
+            # TODO: add a temporary message that tells the user they didn't have access
+            messages.add_message(request, messages.WARNING, "You cannot edit another persons picture!")
+            return HttpResponseRedirect('/')
         form = PictureForm(instance=picture)
         context = {'form': form, 'picture': picture}
         return render(request, 'edit.html', context)
